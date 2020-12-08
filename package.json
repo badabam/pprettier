@@ -8,8 +8,8 @@
     "release": "HUSKY_SKIP_HOOKS=1 standard-version",
     "publish": "git push --follow-tags origin main && npm publish",
     "lint": "eslint .",
-    "prettier:write": "prettier --write .",
-    "prettier": "prettier --check \"**/*.{js,jsx,ts,tsx,md,mdx,html,css,json}\""
+    "prettier:write": "prettier --write \"**/*.{js,jsx,ts,tsx,html,css,json}\"",
+    "prettier": "prettier --check \"**/*.{js,jsx,ts,tsx,html,css,json}\""
   },
   "husky": {
     "hooks": {
