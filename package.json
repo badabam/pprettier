@@ -5,7 +5,7 @@
   "scripts": {
     "test": "npm-run-all -p lint prettier",
     "build": "cp index.js bin/pprettier",
-    "release": "npm run build && standard-version",
+    "release": "standard-version",
     "lint": "eslint .",
     "prettier:write": "prettier --write .",
     "prettier": "prettier --check \"**/*.{js,jsx,ts,tsx,md,mdx,html,css,json}\""
