@@ -1,0 +1,21 @@
+{
+  "name": "pprettier",
+  "version": "0.0.1-alpha",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm-run-all -p lint prettier",
+    "build": "cp index.js bin/pprettier",
+    "lint": "eslint .",
+    "prettier:write": "prettier --write .",
+    "prettier": "prettier --check \"**/*.{js,jsx,ts,tsx,md,mdx,html,css,json}\""
+  },
+  "keywords": [],
+  "author": "Jerry Erbs",
+  "license": "ISC",
+  "description": "Paste Jerry's default .prettierrc into the current project",
+  "devDependencies": {
+    "eslint": "^7.15.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.2.1"
+  }
+}
