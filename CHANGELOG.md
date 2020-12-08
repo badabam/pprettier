@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/badabam/pprettier/compare/v0.0.5...v0.0.6) (2020-12-08)
+
+
+### Bug Fixes
+
+* add --no-verify for publish script ([0e4fc18](https://github.com/badabam/pprettier/commit/0e4fc18d463a32c7eaf7498e9957ea15fe5a9cda))
+
 ### [0.0.5](https://github.com/badabam/pprettier/compare/v0.0.4...v0.0.5) (2020-12-08)
 
 ### [0.0.4](https://github.com/badabam/pprettier/compare/v0.0.3...v0.0.4) (2020-12-08)
