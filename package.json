@@ -1,18 +1,18 @@
 {
   "name": "pprettier",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "index.js",
   "scripts": {
     "test": "npm-run-all -p lint prettier",
     "build": "cp index.js bin/pprettier",
-    "release": "standard-version",
+    "release": "standard-version -- --no-verify # also creates a commit msg, skip hook here",
     "lint": "eslint .",
     "prettier:write": "prettier --write .",
     "prettier": "prettier --check \"**/*.{js,jsx,ts,tsx,md,mdx,html,css,json}\""
   },
   "husky": {
     "hooks": {
-      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true #commitizen",
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
       "pre-commit": "npm-run-all -p lint prettier",
       "pre-push": "npm test",
       "post-release": "git push --follow-tags origin main && npm publish"
