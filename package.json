@@ -1,6 +1,6 @@
 {
   "name": "pprettier",
-  "version": "0.0.1-alpha",
+  "version": "0.0.1",
   "main": "index.js",
   "scripts": {
     "test": "npm-run-all -p lint prettier",
