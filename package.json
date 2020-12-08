@@ -3,22 +3,31 @@
   "version": "0.0.1-alpha",
   "main": "index.js",
   "scripts": {
-    "test": "npm-run-all -p lint prettier",
     "build": "cp index.js bin/pprettier",
+    "test": "npm-run-all -p lint prettier",
     "lint": "eslint .",
     "prettier:write": "prettier --write .",
     "prettier": "prettier --check \"**/*.{js,jsx,ts,tsx,md,mdx,html,css,json}\""
+  },
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true #commitizen",
+      "pre-commit": "npm-run-all -p lint prettier",
+      "pre-push": "npm test"
+    }
   },
   "keywords": [],
   "author": "Jerry Erbs",
   "license": "ISC",
   "description": "Paste Jerry's default .prettierrc into the current project",
   "devDependencies": {
+    "commitizen": "^4.2.2",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.15.0",
+    "husky": "^4.3.5",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.2.1"
   },
-  "dependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/badabam/pprettier.git"
@@ -26,5 +35,10 @@
   "bugs": {
     "url": "https://github.com/badabam/pprettier/issues"
   },
-  "homepage": "https://github.com/badabam/pprettier#readme"
+  "homepage": "https://github.com/badabam/pprettier#readme",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }
