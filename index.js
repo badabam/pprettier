@@ -23,7 +23,7 @@ async function init() {
     printPrettierrcSync(filePath)
   } else {
     addPrettierrc(filePath).then(() => {
-      console.log('Created .prettierrc in\n"', dirPath, '":')
+      console.log('Created a .prettierrc in\n"', dirPath, '":')
       printPrettierrcSync(filePath)
     })
   }
