@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.10](https://github.com/badabam/pprettier/compare/v0.0.9...v0.0.10) (2020-12-09)
+
+
+### Bug Fixes
+
+* **index.js:** improve wording in console text ([9c58276](https://github.com/badabam/pprettier/commit/9c58276fde1845ffb95bdd17226680ec6821e0bd))
+
 ### [0.0.9](https://github.com/badabam/pprettier/compare/v0.0.8...v0.0.9) (2020-12-09)
 
 
