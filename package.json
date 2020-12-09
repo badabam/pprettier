@@ -21,7 +21,7 @@
   "keywords": [],
   "author": "Jerry Erbs",
   "license": "ISC",
-  "description": "Paste Jerry's default .prettierrc into the current project",
+  "description": "Add Jerry's default .prettierrc to the current project",
   "devDependencies": {
     "commitizen": "^4.2.2",
     "cz-conventional-changelog": "^3.3.0",
