@@ -5,8 +5,8 @@
   "scripts": {
     "test": "npm-run-all -p lint prettier",
     "build": "cp index.js bin/pprettier",
-    "release": "HUSKY_SKIP_HOOKS=1 standard-version",
-    "deploy": "HUSKY_SKIP_HOOKS=1 git push --follow-tags --no-verify origin main && npm publish",
+    "release": "HUSKY_SKIP_HOOKS=1 standard-version && npm run build",
+    "deploy": "git push --follow-tags origin main && npm publish",
     "lint": "eslint .",
     "prettier:write": "prettier --write \"**/*.{js,jsx,ts,tsx,html,css,json}\"",
     "prettier": "prettier --check \"**/*.{js,jsx,ts,tsx,html,css,json}\""
