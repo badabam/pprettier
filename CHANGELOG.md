@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com/badabam/pprettier/compare/v0.0.7...v0.0.8) (2020-12-09)
+
+
+### Bug Fixes
+
+* rename script "publish" to "deploy" ([cb032ad](https://github.com/badabam/pprettier/commit/cb032ad5a13f3173bd6f096770cefa9d8378c3d2))
+
 ### [0.0.7](https://github.com/badabam/pprettier/compare/v0.0.6...v0.0.7) (2020-12-09)
 
 ### [0.0.6](https://github.com/badabam/pprettier/compare/v0.0.5...v0.0.6) (2020-12-08)
