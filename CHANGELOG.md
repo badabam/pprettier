@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.9](https://github.com/badabam/pprettier/compare/v0.0.8...v0.0.9) (2020-12-09)
+
+
+### Bug Fixes
+
+* improve scripts ([48592ad](https://github.com/badabam/pprettier/commit/48592ad996faa718be64f6a14c5acabef5c5bab4))
+
 ### [0.0.8](https://github.com/badabam/pprettier/compare/v0.0.7...v0.0.8) (2020-12-09)
 
 
