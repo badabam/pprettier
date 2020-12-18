@@ -31,7 +31,7 @@ async function init() {
 }
 
 async function findProject() {
-  let currentDir = __dirname
+  let currentDir = process.cwd()
   let count = 0
   while (
     count++ < 3 &&
