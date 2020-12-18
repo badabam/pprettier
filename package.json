@@ -15,7 +15,7 @@
   "husky": {
     "hooks": {
       "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
-      "pre-commit": "npm run prettier:write && npm-run-all -p lint prettier",
+      "pre-commit": "npm run prettier:write && npm-run-all -p lint prettier build",
       "pre-push": "npm test"
     }
   },
