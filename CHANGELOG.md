@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.13](https://github.com/badabam/pprettier/compare/v0.0.12...v0.0.13) (2020-12-18)
+
+
+### Bug Fixes
+
+* fix while loop ([e39fec1](https://github.com/badabam/pprettier/commit/e39fec1fa0259b8ff0f8e3fbc187319653e02d02))
+
 ### [0.0.12](https://github.com/badabam/pprettier/compare/v0.0.11...v0.0.12) (2020-12-18)
 
 
