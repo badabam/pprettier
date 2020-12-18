@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.15](https://github.com/badabam/pprettier/compare/v0.0.14...v0.0.15) (2020-12-18)
+
+
+### Features
+
+* improve pre-commit hook ([2f4551f](https://github.com/badabam/pprettier/commit/2f4551fed4615b2d1881943f13188142bd4d8f7e))
+
 ### [0.0.14](https://github.com/badabam/pprettier/compare/v0.0.13...v0.0.14) (2020-12-18)
 
 
