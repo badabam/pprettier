@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.14](https://github.com/badabam/pprettier/compare/v0.0.13...v0.0.14) (2020-12-18)
+
+
+### Bug Fixes
+
+* use process.cwd() to get the current dir and not the npx installation path ([d6a4437](https://github.com/badabam/pprettier/commit/d6a4437cb50d68976eeb663b17ae8654fc2f748e))
+
 ### [0.0.13](https://github.com/badabam/pprettier/compare/v0.0.12...v0.0.13) (2020-12-18)
 
 
