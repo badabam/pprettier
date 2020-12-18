@@ -15,7 +15,7 @@ const prettierrc = {
 init()
 
 async function init() {
-  const dirPath = findProject()
+  const dirPath = await findProject()
   const filePath = path.resolve(dirPath, '.prettierrc')
 
   if (await doesExist(filePath)) {
@@ -31,7 +31,12 @@ async function init() {
 
 async function findProject() {
   let currentDir = __dirname
-  while (!(await doesExist(path.resolve(currentDir, 'package.json')))) {
+  let count = 0
+  while (
+    count < 3 ||
+    !(await doesExist(path.resolve(currentDir, 'package.json')))
+  ) {
+    count++
     currentDir = path.resolve(currentDir, '..')
   }
   console.log('package.json found at', currentDir)
