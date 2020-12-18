@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.12](https://github.com/badabam/pprettier/compare/v0.0.11...v0.0.12) (2020-12-18)
+
+
+### Bug Fixes
+
+* add bin to package.json ([23fd258](https://github.com/badabam/pprettier/commit/23fd2583247b179096a3fe046a5afc528f8ea1f5))
+* add missing await ([554e975](https://github.com/badabam/pprettier/commit/554e9752e14f6f3fa409163d03ad17f15c5cebd0))
+
 ### [0.0.11](https://github.com/badabam/pprettier/compare/v0.0.10...v0.0.11) (2020-12-18)
 
 ### [0.0.10](https://github.com/badabam/pprettier/compare/v0.0.9...v0.0.10) (2020-12-09)
