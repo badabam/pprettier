@@ -5,11 +5,12 @@ const fsp = fs.promises
 const path = require('path')
 
 const prettierrc = {
+  arrowParens: 'avoid',
   semi: false,
   singleQuote: true,
+  tabWidth: 2,
   trailingComma: 'es5',
   useTabs: false,
-  tabWidth: 2,
 }
 
 init()
@@ -33,10 +34,9 @@ async function findProject() {
   let currentDir = __dirname
   let count = 0
   while (
-    count < 3 ||
+    count++ < 3 &&
     !(await doesExist(path.resolve(currentDir, 'package.json')))
   ) {
-    count++
     currentDir = path.resolve(currentDir, '..')
   }
   console.log('package.json found at', currentDir)
@@ -50,7 +50,7 @@ function printPrettierrcSync(filePath) {
 function addPrettierrc(filePath) {
   return fsp
     .writeFile(filePath, JSON.stringify(prettierrc, null, 2))
-    .catch((error) => console.error(error))
+    .catch(error => console.error(error))
 }
 
 function doesExist(filePath) {
