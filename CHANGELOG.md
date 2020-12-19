@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.17](https://github.com/badabam/pprettier/compare/v0.0.16...v0.0.17) (2020-12-19)
+
+
+### Features
+
+* add args and with help option. Needs inquirer and ask if global config should be added ([1d57d7c](https://github.com/badabam/pprettier/commit/1d57d7ce2185cc72623bedf815cce339b55a7dd7))
+
 ### [0.0.16](https://github.com/badabam/pprettier/compare/v0.0.15...v0.0.16) (2020-12-19)
 
 ### [0.0.15](https://github.com/badabam/pprettier/compare/v0.0.14...v0.0.15) (2020-12-18)
