@@ -2,11 +2,13 @@
   "name": "pprettier",
   "version": "0.0.15",
   "main": "index.js",
-  "bin": "bin/pprettier",
+  "bin": "index.js",
+  "engines": {
+    "node": ">= 14.0.1 < 15.0.0"
+  },
   "scripts": {
     "test": "npm-run-all -p lint prettier",
-    "build": "cp index.js bin/pprettier",
-    "release": "HUSKY_SKIP_HOOKS=1 standard-version && npm run build",
+    "release": "HUSKY_SKIP_HOOKS=1 standard-version",
     "deploy": "git push --follow-tags origin main && npm publish",
     "lint": "eslint .",
     "prettier:write": "prettier --write \"**/*.{js,jsx,ts,tsx,html,css,json}\"",
@@ -15,20 +17,27 @@
   "husky": {
     "hooks": {
       "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
-      "pre-commit": "npm run prettier:write && npm-run-all -p lint prettier build",
+      "pre-commit": "npm run prettier:write && npm-run-all -p lint prettier",
       "pre-push": "npm test"
     }
   },
-  "keywords": [],
+  "keywords": [
+    "prettier",
+    "configuration",
+    ".prettierrc"
+  ],
   "author": "Jerry Erbs",
   "license": "ISC",
   "description": "Add a default .prettierrc to the current project",
   "devDependencies": {
+    "@types/jest": "^26.0.19",
     "commitizen": "^4.2.2",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.15.0",
+    "eslint-plugin-jest": "^24.1.3",
     "husky": "^4.3.5",
     "npm-run-all": "^4.1.5",
+    "pkg": "^4.4.9",
     "prettier": "^2.2.1",
     "standard-version": "^9.0.0"
   },
