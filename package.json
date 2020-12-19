@@ -1,8 +1,11 @@
 {
   "name": "pprettier",
   "version": "0.0.16",
-  "main": "index.js",
-  "bin": "index.js",
+  "main": "src/index.js",
+  "bin": {
+    "@badabam/pprettier": "bin/pprettier",
+    "pprettier": "bin/pprettier"
+  },
   "engines": {
     "node": ">= 14.0.1 < 15.0.0"
   },
@@ -18,11 +21,11 @@
     "hooks": {
       "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
       "pre-commit": "npm run prettier:write && npm-run-all -p lint prettier",
-      "post-commit": "echo You should now run `npm run release` and `npm run deploy`",
       "pre-push": "npm test"
     }
   },
   "keywords": [
+    "cli",
     "prettier",
     "configuration",
     ".prettierrc"
@@ -31,6 +34,7 @@
   "license": "ISC",
   "description": "Add a default .prettierrc to the current project",
   "devDependencies": {
+    "@types/chalk": "^2.2.0",
     "@types/jest": "^26.0.19",
     "commitizen": "^4.2.2",
     "cz-conventional-changelog": "^3.3.0",
@@ -54,5 +58,11 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "args": "^5.0.1",
+    "chalk": "^4.1.0",
+    "esm": "^3.2.25",
+    "inquirer": "^7.3.3"
   }
 }
