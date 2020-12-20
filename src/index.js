@@ -7,23 +7,27 @@ import getOptions from './getOptions'
 import printPrettierrcSync from './printPrettierrcSync'
 
 export async function pprettier(args) {
-  const options = getOptions(args)
-  options.silent && goSilent()
-
   const targetDir = await findProject(process.cwd())
   const targetFilePath = path.resolve(targetDir, '.prettierrc')
+
+  const options = getOptions(args)
+  options.silent && goSilent()
 
   const localConfigExists = await doesExist(targetFilePath)
 
   localConfigExists
-    ? leaveWithMessage('.prettierrc already exists')
+    ? exitWithMessage('.prettierrc already exists')
     : await createLocalConfig(targetFilePath, targetDir)
+
+  /**
+   * Local functions
+   */
 
   function goSilent() {
     console.log = () => {}
   }
 
-  function leaveWithMessage(message) {
+  function exitWithMessage(message) {
     console.log(message)
     printPrettierrcSync(targetFilePath)
     process.exit(0)
@@ -37,7 +41,7 @@ export async function pprettier(args) {
       copyGlobalConfig
         ? await addPrettierrc(targetFilePath, configPath)
         : await addPrettierrc(targetFilePath)
-      leaveWithMessage(`Created a .prettierrc in "${targetDir}":\n`)
+      exitWithMessage(`Created a .prettierrc in "${targetDir}":\n`)
     } catch (error) {
       console.error(error)
       process.exit(1)
