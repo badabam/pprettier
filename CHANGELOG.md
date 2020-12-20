@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/badabam/pprettier/compare/v0.0.21...v0.1.0) (2020-12-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* **global config:** Going to a first major version.
+
+### Features
+
+* **global config:** create a global config, if user wants it. Use it for future calls ([ffbf51c](https://github.com/badabam/pprettier/commit/ffbf51c296e28a21ed2c23951e6441b957c30c35))
+
 ### [0.0.21](https://github.com/badabam/pprettier/compare/v0.0.20...v0.0.21) (2020-12-20)
 
 ### [0.0.20](https://github.com/badabam/pprettier/compare/v0.0.19...v0.0.20) (2020-12-20)

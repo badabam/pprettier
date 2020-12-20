@@ -1,6 +1,6 @@
 {
   "name": "pprettier",
-  "version": "0.0.21",
+  "version": "0.1.0",
   "main": "src/index.js",
   "bin": {
     "@badabam/pprettier": "bin/pprettier",
