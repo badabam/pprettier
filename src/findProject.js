@@ -1,3 +1,4 @@
+import chalk from 'chalk'
 import { resolve } from 'path'
 import doesExist from './doesExist'
 
@@ -9,6 +10,8 @@ export default async function findProject(currentDir) {
   ) {
     currentDir = resolve(currentDir, '..')
   }
-  console.log('package.json found at', currentDir)
+  console.log(
+    chalk.cyan(`✓ Project found at "/${currentDir.split('/').pop()}".`)
+  )
   return currentDir
 }

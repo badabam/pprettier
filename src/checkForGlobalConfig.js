@@ -5,7 +5,8 @@ export default function checkForGlobalConfig() {
 
   let exists
   try {
-    exists = accessSync(configPath)
+    accessSync(configPath)
+    exists = true
   } catch (error) {
     exists = false
   }
