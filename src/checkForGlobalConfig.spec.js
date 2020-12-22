@@ -19,9 +19,17 @@ describe('checkForGlobalConfig', () => {
     })
   })
 
-  it('calsl accessSync with correct path', () => {
+  it('calls accessSync with correct path', () => {
     checkForGlobalConfig()
     expect(fs.accessSync).toHaveBeenCalledTimes(1)
     expect(fs.accessSync).toHaveBeenCalledWith('/Users/foo/.pprettierrc')
+  })
+
+  it('returns false for exists, if nothing is found', () => {
+    fs.accessSync.mockImplementation(() => {
+      throw new Error('not found')
+    })
+    const { exists } = checkForGlobalConfig()
+    expect(exists).toBe(false)
   })
 })

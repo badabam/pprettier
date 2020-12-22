@@ -4,14 +4,19 @@ import doesExist from './doesExist'
 
 export default async function findProject(currentDir) {
   let count = 0
-  while (
-    count++ < 3 &&
-    !(await doesExist(resolve(currentDir, 'package.json')))
-  ) {
+  let hasFoundPath = false
+  while (count++ < 3 && !hasFoundPath) {
+    hasFoundPath = await doesExist(resolve(currentDir, 'package.json'))
     currentDir = resolve(currentDir, '..')
   }
-  console.log(
-    chalk.cyan(`✓ Project found at "/${currentDir.split('/').pop()}".`)
-  )
-  return currentDir
+  const message = hasFoundPath
+    ? `✓ Project found at "/${currentDir.split('/').pop()}".`
+    : '❌ no project found'
+
+  console.log(chalk.cyan(message))
+
+  if (hasFoundPath) {
+    return currentDir
+  }
+  throw new Error('no project found')
 }

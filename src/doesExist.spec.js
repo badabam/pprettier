@@ -11,10 +11,10 @@ jest.mock('fs', () => ({
 }))
 
 describe('doesExist', () => {
-  it('calls fs.access with filePath', () => {
+  it('calls fs.access with filePath', async () => {
     const filePath = 'foo/bar'
     fs.promises.access.mockReturnValue(Promise.resolve())
-    expect(doesExist(filePath)).resolves.toBe(true)
+    await expect(doesExist(filePath)).resolves.toBe(true)
     expect(fs.promises.access).toHaveBeenCalledTimes(1)
     expect(fs.promises.access).toHaveBeenCalledWith(filePath, fs.constants.F_OK)
   })
@@ -22,12 +22,12 @@ describe('doesExist', () => {
   it('returns a Promise resolving to true if file exists', () => {
     const filePath = 'foo/bar'
     fs.promises.access.mockReturnValue(Promise.resolve())
-    expect(doesExist(filePath)).resolves.toBe(true)
+    return expect(doesExist(filePath)).resolves.toBe(true)
   })
 
   it('returns a Promise resolving to true if file exists', () => {
     const filePath = 'foo/bar'
     fs.promises.access.mockReturnValue(Promise.reject())
-    expect(doesExist(filePath)).resolves.toBe(false)
+    return expect(doesExist(filePath)).resolves.toBe(false)
   })
 })
