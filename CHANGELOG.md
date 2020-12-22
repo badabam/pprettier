@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/badabam/pprettier/compare/v1.0.2...v1.1.0) (2020-12-22)
+
+
+### Features
+
+* **testing:** add testing on CI of GitHub, add another test ([e21a873](https://github.com/badabam/pprettier/commit/e21a87367601221272c6b49330376ced4a8a2151))
+
+### [1.0.2](https://github.com/badabam/pprettier/compare/v1.0.1...v1.0.2) (2020-12-21)
+
 ### [1.0.1](https://github.com/badabam/pprettier/compare/v1.0.0...v1.0.1) (2020-12-20)
 
 ## [0.1.0](https://github.com/badabam/pprettier/compare/v0.0.21...v0.1.0) (2020-12-20)
