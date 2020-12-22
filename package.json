@@ -10,7 +10,8 @@
     "node": ">= 14.0.1 < 15.0.0"
   },
   "scripts": {
-    "test": "jest",
+    "test": "npm-run-all -p lint prettier jest",
+    "jest": "jest",
     "test:watch": "jest --watch",
     "release": "HUSKY_SKIP_HOOKS=1 standard-version",
     "deploy": "git push --follow-tags origin main && npm publish",

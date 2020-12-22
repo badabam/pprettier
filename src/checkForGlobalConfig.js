@@ -1,7 +1,8 @@
 import { accessSync } from 'fs'
+import { homedir } from 'os'
 
 export default function checkForGlobalConfig() {
-  const configPath = require('os').homedir() + '/.pprettierrc'
+  const configPath = homedir() + '/.pprettierrc'
 
   let exists
   try {
