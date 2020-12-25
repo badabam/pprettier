@@ -4,13 +4,15 @@ import addPrettierrc from './addPrettierrc'
 import askForUserInput from './askForUserInput'
 import checkForGlobalConfig from './checkForGlobalConfig'
 import doesExist from './doesExist'
+import exitWithMessage from './exitWithMessage'
 import findProject from './findProject'
 import getOptions from './getOptions'
-import printPrettierrcSync from './printPrettierrcSync'
 
 export async function pprettier(args) {
   const options = getOptions(args)
-  if (options.silent) goSilent()
+  if (options.silent) {
+    console.log = () => {}
+  }
 
   const targetDir = await findProject(process.cwd())
   const targetFilePath = path.resolve(targetDir, '.prettierrc')
@@ -32,7 +34,7 @@ export async function pprettier(args) {
     shouldAskUserForInput && (await askForUserInput()).wantsGlobalConfig
 
   if (userWantsGlobalConfig) {
-    await createGlobalConfig()
+    await addPrettierrc(globalConfigFilePath)
     console.log(
       '✓ Created a global .pprettierrc. Edit it to change your defaults.'
     )
@@ -45,7 +47,8 @@ export async function pprettier(args) {
     try {
       await addPrettierrc(targetFilePath, globalConfigFilePath)
       exitWithMessage(
-        `✓ Created a .prettierrc based on your global config file.\n`
+        `✓ Created a .prettierrc based on your global config file.\n`,
+        targetFilePath
       )
     } catch (error) {
       console.error(error)
@@ -54,7 +57,10 @@ export async function pprettier(args) {
   } else {
     try {
       await addPrettierrc(targetFilePath)
-      exitWithMessage(`✓ Created a .prettierrc in "${targetDir}".\n`)
+      exitWithMessage(
+        `✓ Created a .prettierrc in "${targetDir}".\n`,
+        targetFilePath
+      )
     } catch (error) {
       console.error(error)
       process.exit(1)
@@ -64,18 +70,4 @@ export async function pprettier(args) {
   /**
    * Local functions
    */
-
-  function goSilent() {
-    console.log = () => {}
-  }
-
-  function exitWithMessage(message) {
-    console.log(message)
-    printPrettierrcSync(targetFilePath)
-    process.exit(0)
-  }
-
-  async function createGlobalConfig() {
-    await addPrettierrc(globalConfigFilePath)
-  }
 }
