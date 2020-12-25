@@ -2,14 +2,14 @@ import { accessSync } from 'fs'
 import { homedir } from 'os'
 
 export default function checkForGlobalConfig() {
-  const configPath = homedir() + '/.pprettierrc'
+  const globalConfigFilePath = homedir() + '/.pprettierrc'
 
   let exists
   try {
-    accessSync(configPath)
+    accessSync(globalConfigFilePath)
     exists = true
   } catch (error) {
     exists = false
   }
-  return { configPath, exists }
+  return { globalConfigFilePath, globalConfigExists: exists }
 }

@@ -22,7 +22,7 @@ const source = '/source/file/path.json'
 describe('addPrettierrc', () => {
   it('reads the sourceFilePath and writes to targetFilePath', () => {
     // run
-    addPrettierrc(target, source)
+    addPrettierrc({ targetFilePath: target, sourceFilePath: source })
 
     // check read
     expect(fs.readFileSync).toHaveBeenCalledTimes(1)
@@ -37,21 +37,14 @@ describe('addPrettierrc', () => {
   })
 
   it('uses the template if sourceFilePath is omitted', async () => {
-    addPrettierrc()
+    addPrettierrc({ targetFilePath: target })
     expect(fs.readFileSync).toHaveBeenCalledWith('/template/path', {
       encoding: 'utf8',
     })
   })
 
-  it('logs a writeError to  console.error', async () => {
-    fs.promises.writeFile.mockImplementation(() =>
-      Promise.reject(new Error('some write error'))
-    )
-    await addPrettierrc()
-    expect(fs.promises.writeFile).rejects.toThrow()
-    expect(fs.promises.writeFile).rejects.toThrowError('some write error')
-    expect(global.console.error).toHaveBeenCalledWith(
-      new Error('some write error')
-    )
+  it('returns a promise', async () => {
+    fs.promises.writeFile.mockImplementation(() => Promise.resolve())
+    await expect(addPrettierrc()).toBeInstanceOf(Promise)
   })
 })

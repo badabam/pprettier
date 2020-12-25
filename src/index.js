@@ -14,18 +14,15 @@ export async function pprettier(args) {
     console.log = () => {}
   }
 
-  const targetDir = await findProject(process.cwd())
-  const targetFilePath = path.resolve(targetDir, '.prettierrc')
-  const localConfigExists = await doesExist(targetFilePath)
+  const prettierDirectory = await findProject(process.cwd())
+  const prettierFilePath = path.resolve(prettierDirectory, '.prettierrc')
+  const prettierAlreadyInProject = await doesExist(prettierFilePath)
 
-  if (localConfigExists) {
+  if (prettierAlreadyInProject) {
     exitWithMessage(chalk.cyan(`✓ Nothing to do: .prettierrc already exists.`))
   }
 
-  const {
-    exists: globalConfigExists,
-    configPath: globalConfigFilePath,
-  } = checkForGlobalConfig()
+  const { globalConfigExists, globalConfigFilePath } = checkForGlobalConfig()
 
   const shouldAskUserForInput =
     !globalConfigExists && !options.silent && !options.ignoreGlobalConfig
@@ -34,10 +31,15 @@ export async function pprettier(args) {
     shouldAskUserForInput && (await askForUserInput()).wantsGlobalConfig
 
   if (userWantsGlobalConfig) {
-    await addPrettierrc(globalConfigFilePath)
-    console.log(
-      '✓ Created a global .pprettierrc. Edit it to change your defaults.'
-    )
+    addPrettierrc(globalConfigFilePath)
+      .then(() => {
+        console.log(
+          '✓ Created a global .pprettierrc. Edit it to change your defaults.'
+        )
+      })
+      .catch(error => {
+        console.error('❌ Could not create global config', error)
+      })
   }
 
   const shouldCopyGlobalConfig =
@@ -45,10 +47,13 @@ export async function pprettier(args) {
 
   if (shouldCopyGlobalConfig) {
     try {
-      await addPrettierrc(targetFilePath, globalConfigFilePath)
+      await addPrettierrc({
+        targetFilePath: prettierFilePath,
+        sourceFilePath: globalConfigFilePath,
+      })
       exitWithMessage(
         `✓ Created a .prettierrc based on your global config file.\n`,
-        targetFilePath
+        prettierFilePath
       )
     } catch (error) {
       console.error(error)
@@ -56,18 +61,14 @@ export async function pprettier(args) {
     }
   } else {
     try {
-      await addPrettierrc(targetFilePath)
+      await addPrettierrc({ targetFilePath: prettierFilePath })
       exitWithMessage(
-        `✓ Created a .prettierrc in "${targetDir}".\n`,
-        targetFilePath
+        `✓ Created a .prettierrc in "${prettierDirectory}".\n`,
+        prettierFilePath
       )
     } catch (error) {
       console.error(error)
       process.exit(1)
     }
   }
-
-  /**
-   * Local functions
-   */
 }

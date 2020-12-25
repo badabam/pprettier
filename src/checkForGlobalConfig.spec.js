@@ -14,8 +14,8 @@ describe('checkForGlobalConfig', () => {
   it('returns an object with configPath and exists', () => {
     homedir.mockReturnValue('/Users/foo')
     expect(checkForGlobalConfig()).toEqual({
-      configPath: '/Users/foo/.pprettierrc',
-      exists: true,
+      globalConfigFilePath: '/Users/foo/.pprettierrc',
+      globalConfigExists: true,
     })
   })
 
@@ -29,7 +29,7 @@ describe('checkForGlobalConfig', () => {
     fs.accessSync.mockImplementation(() => {
       throw new Error('not found')
     })
-    const { exists } = checkForGlobalConfig()
-    expect(exists).toBe(false)
+    const { globalConfigExists } = checkForGlobalConfig()
+    expect(globalConfigExists).toBe(false)
   })
 })
