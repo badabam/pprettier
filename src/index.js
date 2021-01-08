@@ -16,9 +16,9 @@ export async function pprettier(args) {
 
   const prettierDirectory = await findProject(process.cwd())
   const prettierFilePath = path.resolve(prettierDirectory, '.prettierrc')
-  const prettierAlreadyInProject = await doesExist(prettierFilePath)
+  const isPrettierAlreadyInProject = await doesExist(prettierFilePath)
 
-  if (prettierAlreadyInProject) {
+  if (isPrettierAlreadyInProject) {
     exitWithMessage(chalk.cyan(`✓ Nothing to do: .prettierrc already exists.`))
   }
 
@@ -31,21 +31,32 @@ export async function pprettier(args) {
     shouldAskUserForInput && (await askForUserInput()).wantsGlobalConfig
 
   if (userWantsGlobalConfig) {
-    addPrettierrc(globalConfigFilePath)
-      .then(() => {
-        console.log(
-          '✓ Created a global .pprettierrc. Edit it to change your defaults.'
-        )
-      })
-      .catch(error => {
-        console.error('❌ Could not create global config', error)
-      })
+    addGlobalConfig()
   }
 
-  const shouldCopyGlobalConfig =
+  const shouldUseGlobalConfigInProject =
     !options.ignoreGlobalConfig && (globalConfigExists || userWantsGlobalConfig)
 
-  if (shouldCopyGlobalConfig) {
+  if (shouldUseGlobalConfigInProject) {
+    await copyGlobalPrettierrcToProject()
+  } else {
+    await addDefaultConfigFromTemplateToProject()
+  }
+
+  async function addDefaultConfigFromTemplateToProject() {
+    try {
+      await addPrettierrc({ targetFilePath: prettierFilePath })
+      exitWithMessage(
+        `✓ Created a .prettierrc in "${prettierDirectory}".\n`,
+        prettierFilePath
+      )
+    } catch (error) {
+      console.error(error)
+      process.exit(1)
+    }
+  }
+
+  async function copyGlobalPrettierrcToProject() {
     try {
       await addPrettierrc({
         targetFilePath: prettierFilePath,
@@ -59,16 +70,17 @@ export async function pprettier(args) {
       console.error(error)
       process.exit(1)
     }
-  } else {
-    try {
-      await addPrettierrc({ targetFilePath: prettierFilePath })
-      exitWithMessage(
-        `✓ Created a .prettierrc in "${prettierDirectory}".\n`,
-        prettierFilePath
-      )
-    } catch (error) {
-      console.error(error)
-      process.exit(1)
-    }
+  }
+
+  function addGlobalConfig() {
+    addPrettierrc(globalConfigFilePath)
+      .then(() => {
+        console.log(
+          '✓ Created a global .pprettierrc. Edit it to change your defaults.'
+        )
+      })
+      .catch(error => {
+        console.error('❌ Could not create global config', error)
+      })
   }
 }
